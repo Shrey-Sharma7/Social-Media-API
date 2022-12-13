@@ -24,7 +24,11 @@ router.get('/',async(req,res) => {
                 title: post.title,
                 description: post.description,
                 createdAt: post.createdAt,
-                comments: post.comments,
+                comments: post.comments.map(el => {
+                    return {
+                        comment: el.comment
+                        }
+                    }),
                 likes: post.like
             }
         })

@@ -5,8 +5,15 @@ const router = require('express').Router();
 router.get('/:id', async (req, res) => {
     try {
         const currentPost = await Post.findById(req.params.id).populate('comments');
+        const comments = currentPost.comments.map(el => {
+            return {
+                comment: el.comment,
+            }
+        })
         const { __v, createdAt, updatedAt, ...other } = currentPost._doc;
+        other.comments = comments;
         res.status(200).json(other);
+
     } catch (err) {
         res.status(400).json('Invalid post id')
     }
