@@ -13,7 +13,7 @@ const unlikeRoute = require('./routes/unlike')
 const commentRoute = require('./routes/comment')
 const allPostsRoute = require('./routes/all_posts')
 const followRoute = require('./routes/follow')
-// const unfollowRoute = require('./routes/unfollow')
+const unfollowRoute = require('./routes/unfollow')
 const {authCheck} = require('./middleware/auth.js')
 
 //Connections
@@ -36,7 +36,7 @@ app.use('/api/unlike',authCheck,unlikeRoute);
 app.use('/api/comment',authCheck,commentRoute);
 app.use('/api/all_posts',authCheck,allPostsRoute);
 app.use('/api/follow',authCheck,followRoute);
-// app.use('/api/unfollow',authCheck,unfollowRoute);
+app.use('/api/unfollow',authCheck,unfollowRoute);
 
 app.listen(8800,()=>{
     console.log("Backend server runs!");
