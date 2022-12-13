@@ -147,7 +147,7 @@ describe('Posts', () => {
         })
     })
 
-    it('it should not GET a post by the given id', (done) => {
+    it('it should not GET a post for an invalid id', (done) => {
         chai.request(app)
             .get('/api/posts/123')
             .set('Authorization', `Bearer ${token}`)
@@ -159,7 +159,7 @@ describe('Posts', () => {
     })
 
 
-    it('it should not DELETE a post by the given id', (done) => {
+    it('it should not DELETE a post for an invalid id', (done) => {
         chai.request(app)
             .delete('/api/posts/123')
             .set('Authorization', `Bearer ${token}`)
