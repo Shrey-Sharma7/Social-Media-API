@@ -6,7 +6,7 @@ router.get('/', async (req, res) => {
     try {
         const user = await User.findById(req.userId);
         const result = {
-            user: user.username,
+            username: user.username,
             followerCount: user.followers.length,
             followingCount: user.following.length
         }

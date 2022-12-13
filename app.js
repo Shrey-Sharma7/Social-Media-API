@@ -28,6 +28,8 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan('common'));
 
+//Routes
+
 app.use('/api/user',authCheck,userRoute);
 app.use('/api/authenticate',authRoute);
 app.use('/api/posts',authCheck,postRoute);
@@ -38,6 +40,8 @@ app.use('/api/all_posts',authCheck,allPostsRoute);
 app.use('/api/follow',authCheck,followRoute);
 app.use('/api/unfollow',authCheck,unfollowRoute);
 
-app.listen(8800,()=>{
+app.listen(3000,()=>{
     console.log("Backend server runs!");
 })
+
+module.exports = app;

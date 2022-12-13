@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
-        require: true,
+        required: true,
         min: 3,
         max: 20,
         unique: true
@@ -21,12 +21,10 @@ const userSchema = new mongoose.Schema({
     },
     followers: [{
         type: mongoose.Schema.Types.ObjectId,
-        default:[],
         ref: 'User'
     }],
     following: [{
         type: mongoose.Schema.Types.ObjectId,
-        default:[],
         ref: 'User'
     }],
     posts: [{

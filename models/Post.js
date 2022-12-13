@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
     title:{
         type:String,
-        require:true,
+        required:true,
         max:50
     },
     description:{
@@ -15,7 +15,6 @@ const postSchema = new mongoose.Schema({
     },
     comments:[{
         type:mongoose.Schema.Types.ObjectId,
-        default:[],
         ref:'Comment'
     }]
 }, 
