@@ -3,20 +3,21 @@ const router = require('express').Router();
 
 router.post('/:id', async (req, res) => {
     try {
-        const user = User.findById(req.userId); //me
+        // const user = User.findById(req.userId); //me
         const followedUser = User.findById(req.params.id); //followed
 
-        if (followedUser.followers.includes(userId)) {
-            res.status(403).json("You are already following this user");
-        }
-        else {
-            followedUser.followers.push(userId);
-            user.following.push(followedUser._id);
-        }
-        await user.save();
-        await followedUser.save();
+        await User.findByIdAndUpdate(
+            req.params.id,
+            { $push: { followers: req.userId } },
+            { new: true, useFindAndModify: false }
+        );
+        await User.findByIdAndUpdate(
+            req.userId,
+            { $push: { following: req.params.id } },
+            { new: true, useFindAndModify: false }
+        );
 
-        res.status(200).res(followedUser);
+        res.status(200).json('Successfully Followed');
 
     } catch (error) {
         res.status(500).json(error);
@@ -25,5 +26,6 @@ router.post('/:id', async (req, res) => {
         throw (error).message;
     }
 })
+
 
 module.exports = router

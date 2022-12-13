@@ -3,21 +3,19 @@ const router = require('express').Router();
 
 router.post('/:id', async (req, res) => {
     try {
-        const user = User.findById(req.userId); //me
+        // const user = User.findById(req.userId); //me
         const followedUser = User.findById(req.params.id); //followed
-
-        if(!followedUser.followers.includes(userId)){
-            res.status(403).json("You are not following this user");
-        }
-        else{
-            followedUser.followers.splice(followedUser.followers.indexOf(userId),1);
-            user.following.splice(user.following.indexOf(followedUser._id),1);
-        }
-        
-        await user.save();
-        await followedUser.save();
-
-        res.status(200).res(followedUser);
+        await User.updateOne({ _id: req.params.id }, {
+            $pullAll: {
+                followers: [{_id: req.userId}],
+            },
+        });
+        await User.updateOne({ _id: req.userId }, {
+            $pullAll: {
+                following: [{_id: req.params.id}],
+            }
+        });
+        res.status(200).json('Succesfully Unfollowed');
 
     } catch (error) {
         res.status(500).json(error);

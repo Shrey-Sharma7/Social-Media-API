@@ -8,9 +8,9 @@ const jwt = require('jsonwebtoken');
 //Register user -- dummy user
 router.post('/register', async (req, res) => {
     const user = new User({
-        username: 'john2',
-        email: 'xyz@gmail.com',
-        password: '123456'
+        username: 'john',
+        email: 'abcd@gmail.com',
+        password: '12345678'
     })
     await user.save();
     res.status(200).json(user);
