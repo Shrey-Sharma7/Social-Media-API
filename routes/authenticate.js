@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const User = require('../models/User')
-const jwt = require('jsonwebtoken')
+const authController = require('../controllers/authController')
+
 // const bcrypt = require('bcrypt');
 
 //Did not encrypt password because it is dummy data
@@ -17,24 +18,6 @@ router.post('/register', async (req, res) => {
 })
 
 //Authenticate currently logged in user.
-router.post('/', async (req, res) => {
-    try {
-        const existingUser = await User.findOne({ email: req.body.email });
-        if (!existingUser) {
-            throw new Error('User does not exist')
-        }
-
-        if(req.body.password !== existingUser.password){
-            throw new Error('Invalid password')
-        }
- 
-        const token = jwt.sign({ email: existingUser.email, id: existingUser._id }, 'test', { expiresIn: "10h" });
-
-        res.status(200).json({ jwtToken: token })
-
-    } catch (err) {
-        res.status(400).json(err.message)
-    }
-});
+router.post('/', authController.authenticateUser);
 
 module.exports = router
