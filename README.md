@@ -36,3 +36,18 @@ Login on the endpoint ```/api/authenticate``` with json body:
 }
 ```
 
+Set the Authorization header with the bearer token received to access further APIs
+
+## Docker Image
+
+To get the docker image use the following command:
+```
+docker pull shreydock7/social-media-api:latest
+```
+
+Expose the container ```PORT: 3000``` 
+
+The server is live and running on ```http://localhost:3000```
+
+Follow the same authentication steps as listed above for further access.
+
