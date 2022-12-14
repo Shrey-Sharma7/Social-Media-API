@@ -10,3 +10,17 @@ Use the package manager [npm](https://docs.npmjs.com/cli/v8/commands/npm-install
 npm install 
 node server.js
 ```
+
+## Login
+
+A dummy account has been created for authentication.
+
+Login on the endpoint ```/api/authenticate``` with json body:
+
+```json
+{
+    "email": "abcd@gmail.com",
+    "password":"12345678"
+}
+```
+
