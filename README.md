@@ -8,5 +8,5 @@ Use the package manager [npm](https://docs.npmjs.com/cli/v8/commands/npm-install
 
 ```bash
 npm install 
-node app.js
+node server.js
 ```
