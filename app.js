@@ -16,12 +16,9 @@ const followRoute = require('./routes/follow')
 const unfollowRoute = require('./routes/unfollow')
 const { authCheck } = require('./middleware/auth.js')
 
-//Connections
+//Connecting to MongoDB
 
-mongoose.set('strictQuery', false);
-mongoose.connect(process.env.MONGO_URL, () => {
-    console.log("connected to mongoDB")
-});
+require('./initDB')()
 
 //Middlewares
 
